@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+[IDE/editor folders]
+.vscode/
+.idea/
+
+# MacOS system files
+._*
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Custom build/cache folders
+dist/
+.cache/
