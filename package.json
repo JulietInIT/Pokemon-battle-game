@@ -20,6 +20,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "typescript": "^5",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.6.3",
@@ -33,10 +34,11 @@
     "eslint-config-next": "15.4.2",
     "jsdom": "^26.1.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
+    "daisyui": "^5.0.46",
     "vitest": "^3.2.4"
   },
   "vitest": {
     "setupFiles": "./vitest.setup.ts"
+
   }
 }
