@@ -1,0 +1,3 @@
+/* app/styles/globals.css */
+@import "tailwindcss";
+@plugin "daisyui";
