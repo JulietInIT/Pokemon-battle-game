@@ -6,7 +6,7 @@
     "pnpm": ">=8"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm, use 'pnpm dlx' <pgk_name>",
+    "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
