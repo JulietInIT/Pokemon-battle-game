@@ -8,12 +8,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans p-4">
         {/* Header */}
         <nav className="flex gap-4 border-b pb-2 mb-4">
-          <Link href="/pages/">Home</Link>
-          <Link href="/pages/roster">My Roster</Link>
-          <Link href="/pages/battle">Battle</Link>
-          <Link href="/pages/leaderboard">Leaderboard</Link>
-          <Link href="/pages/signup">Sign Up</Link>
-          <Link href="/pages/login">Log In</Link>
+          <Link href="/">Home</Link>
+          <Link href="/roster">My Roster</Link>
+          <Link href="/battle">Battle</Link>
+          <Link href="/leaderboard">Leaderboard</Link>
+          <Link href="/signup">Sign Up</Link>
+          <Link href="/login">Log In</Link>
         </nav>
         {/* Main content */}
         <main>{children}</main>
