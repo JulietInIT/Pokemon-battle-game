@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -25,34 +26,34 @@ export default function Footer() {
         {/* Center Links */}
         <div className="flex flex-col gap-2 text-base mt-58">
           <p className="font-bold">FINAL FRONTEND PROJECT</p>
-          <a href="#">WBS Coding School</a>
-          <a href="#">GitHub</a>
-          <a href="#">Netlify</a>
+          <Link href="/wbscodingschool">WBS Coding School</Link>
+          <Link href="/github">GitHub</Link>
+          <Link href="/netlify">Netlify</Link>
           <p className="pt-2">
             My with love by{' '}
-            <a href="#" className="underline">Linus</a>,{' '}
-            <a href="#" className="underline">Yuliia</a> and{' '}
-            <a href="#" className="underline">Dennis</a>
+            <Link href="/linus" className="underline">Linus</Link>,{' '}
+            <Link href="/yullia" className="underline">Yuliia</Link> and {' '}
+            <Link href="/dennis" className="underline">Dennis</Link>{' '}
           </p>
         </div>
 
         {/* Right Links */}
         <div className="flex flex-col gap-2 text-base mt-58">
-          <a href="#">Home</a>
-          <a href="#">Battle</a>
-          <a href="#">Leaderboard</a>
-          <a href="#">My Roster</a>
-          <a href="#">Sign Up</a>
-          <a href="#">Sign In</a>
+          <Link href="/">Home</Link>
+          <Link href="/battle">Battle</Link>
+          <Link href="/leaderboard">Leaderboard</Link>
+          <Link href="/myroster">My Roster</Link>
+          <Link href="/signup">Sign Up</Link>
+          <Link href="/signin">Sign In</Link>
         </div>
       </div>
 
       {/* Bottom */}
       <div className="mt-10 text-center text-sm text-[#112B54] space-x-4">
         <span>&copy; 2025 All rights reserved</span>
-        <a href="#" className="underline">Privacy Policy</a>
-        <a href="#" className="underline">Terms of Service</a>
-        <a href="#" className="underline">Support</a>
+        <Link href="/privacypolicy" className="underline">Privacy Policy</Link>
+        <Link href="/termsofservice" className="underline">Terms of Service</Link>
+        <Link href="/support" className="underline">Support</Link>
       </div>
     </footer>
   );

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Header() {
@@ -6,9 +7,9 @@ export default function Header() {
       <div className="max-w-screen-xl mx-auto flex items-center justify-between relative">
         {/* Left nav */}
         <nav className="flex gap-6 text-[#112B54] font-bold text-base uppercase mt-20">
-          <a href="#">Home</a>
-          <a href="#">Battle</a>
-          <a href="#">Leaderboard</a>
+          <Link href="/">Home</Link>
+          <Link href="/battle">Battle</Link>
+          <Link href="/leaderboard">Leaderboard</Link>
         </nav>
 
         {/* Center logo */}
@@ -19,14 +20,13 @@ export default function Header() {
             width={250}
             height={80}
           />
-          <h1 className="text-4xl font-extrabold text-[#112B54] -mt-2"></h1>
         </div>
 
         {/* Right nav */}
         <nav className="flex gap-6 text-[#112B54] font-bold text-base uppercase mt-20">
-          <a href="#">My Roster</a>
-          <a href="#">Sign Up</a>
-          <a href="#">Log In</a>
+          <Link href="/myroster">My Roster</Link>
+          <Link href="/signup">Sign Up</Link>
+          <Link href="/login">Log In</Link>
         </nav>
       </div>
     </header>
