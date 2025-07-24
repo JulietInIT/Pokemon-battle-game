@@ -1,5 +1,6 @@
 // IMPORTS
-import { PokemonListItemType } from "./types"
+import { PokemonListItemType } from "./types";
+import { typeColors } from "@/components/typeColors";
 
 // HELPER FUNCTIONS
 /**
@@ -11,8 +12,12 @@ import { PokemonListItemType } from "./types"
  * @remarks
  * The base URL is retrieved from the `IMAGE_BASE_URL` environment variable.
  */
-export function getPokemonImageUrl(id: number) : string {
-    return `${process.env.IMAGE_BASE_URL}${id}.svg`
+export function getPokemonImageUrl(id: number): string {
+  // Fallback to the GitHub URL if env var is not set
+  const baseUrl =
+    process.env.IMAGE_BASE_URL ||
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/";
+  return `${baseUrl}${id}.png`;
 }
 
 /**
@@ -20,15 +25,34 @@ export function getPokemonImageUrl(id: number) : string {
  *
  * @param start - The offset (starting index) for the Pokémon list. Defaults to 0.
  * @param end - The number of Pokémon to fetch (limit). Defaults to 50.
+ * @param random - Whether to fetch random Pokemon instead of sequential. Defaults to false.
  * @returns A promise that resolves to an array of Pokémon list items.
- *
- * @throws Will throw an error if the network request fails or the response is not OK.
- *
- * @example
- * const pokemons = await getPokemonListItems(0, 10);
- * // pokemons is an array of { name: string, url: string }
  */
-export async function getPokemonListItems(start = 0, end = 50): Promise<PokemonListItemType[]> {
+export async function getPokemonListItems(
+  start = 0,
+  end = 50,
+  random = false
+): Promise<PokemonListItemType[]> {
+  if (random) {
+    // Generate unique random IDs
+    const randomIds = new Set<number>();
+    while (randomIds.size < end) {
+      randomIds.add(Math.floor(Math.random() * 1010) + 1);
+    }
+
+    const promises = Array.from(randomIds).map((id) =>
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}pokemon/${id}`)
+        .then((res) => res.json())
+        .then((data) => ({
+          name: data.name,
+          url: `${process.env.NEXT_PUBLIC_API_BASE_URL}pokemon/${data.id}/`,
+        }))
+    );
+
+    return Promise.all(promises);
+  }
+
+  // Original sequential fetching
   const fetchUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}pokemon?limit=${end}&offset=${start}`;
   const response = await fetch(fetchUrl);
   if (!response.ok) {
@@ -36,4 +60,44 @@ export async function getPokemonListItems(start = 0, end = 50): Promise<PokemonL
   }
   const json = await response.json();
   return json.results;
+}
+
+/**
+ * Fetches detailed information for a single Pokémon by ID
+ * @param id - The Pokémon ID
+ * @returns A promise that resolves to the detailed Pokémon data
+ */
+export async function fetchPokemonDetails(id: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}pokemon/${id}`
+  );
+  if (!response.ok) {
+    throw new Error(`Response status: ${response.status}`);
+  }
+  return await response.json();
+}
+
+/**
+ * Generates background colors and gradient based on Pokemon types
+ * @param types - Array of Pokemon types
+ * @returns Object with colors array and gradient CSS string
+ */
+export function getPokemonColors(types: any[]) {
+  console.log("getPokemonColors input:", types);
+
+  const typeNames = types.map((t) => (typeof t === "string" ? t : t.type.name));
+  console.log("Type names:", typeNames);
+
+  const colors = typeNames.map(
+    (type) => typeColors[type as keyof typeof typeColors] || "#68A090"
+  );
+  console.log("Colors:", colors);
+
+  const gradient =
+    colors.length === 1
+      ? `linear-gradient(135deg, ${colors[0]} 0%, rgba(255, 255, 255, 1) 100%)`
+      : `linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
+
+  console.log("Final gradient:", gradient);
+  return { colors, gradient };
 }
