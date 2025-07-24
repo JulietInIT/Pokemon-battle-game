@@ -24,6 +24,9 @@ export default function PokemonCard({ pokemon, types = [] }: PokemonCardProps) {
         ...(gradient ? { background: gradient } : { backgroundColor: "white" }),
       }}
     >
+      {/* White overlay to soften colors */}
+      <div className='absolute inset-0 bg-white/40 rounded-2xl pointer-events-none' />
+
       {/* 1px border overlay */}
       <div className='absolute inset-0 border border-black/20 rounded-2xl pointer-events-none' />
 

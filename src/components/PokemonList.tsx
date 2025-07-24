@@ -29,7 +29,7 @@ export default function PokemonList({
   useEffect(() => {
     if (!pokemon) {
       setLoading(true);
-      getPokemonListItems(0, 50, true) // Enable random fetching
+      getPokemonListItems(0, 20, true) // Reduce to 20 Pokemon
         .then(setPokemonList)
         .finally(() => setLoading(false));
     } else {
@@ -50,7 +50,7 @@ export default function PokemonList({
         }
       }
     });
-  }, [pokemonList, pokemonDetails]);
+  }, [pokemonList]); // Remove pokemonDetails from dependencies
 
   const handleCatch = (pokemon: PokemonListItemType) => {
     const id = pokemon.url.split("/").filter(Boolean).slice(-1)[0];
