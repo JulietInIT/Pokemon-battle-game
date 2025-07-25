@@ -13,6 +13,7 @@ export default function Footer() {
             width={220}
             height={50}
             className='mt-12'
+            style={{ width: "auto", height: "auto" }}
           />
           <Image
             src='/pikachu_footer.png'
@@ -20,6 +21,7 @@ export default function Footer() {
             width={300}
             height={100}
             className='-mt-6'
+            style={{ width: "auto", height: "auto" }}
           />
         </div>
 

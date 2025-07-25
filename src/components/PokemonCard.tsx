@@ -8,10 +8,10 @@ import { PokemonListItemType, PokemonCardProps } from "../lib/types";
 import { getPokemonImageUrl, getPokemonColors } from "../lib/utils";
 
 export default function PokemonCard({ pokemon, types = [] }: PokemonCardProps) {
-  console.log("Pokemon URL:", pokemon.url);
+  /* console.log("Pokemon URL:", pokemon.url); */
 
   const pokemonId = pokemon.url.split("/").filter(Boolean).slice(-1)[0];
-  console.log("Extracted ID:", pokemonId);
+  /* console.log("Extracted ID:", pokemonId); */
 
   const { gradient } =
     types.length > 0 ? getPokemonColors(types) : { gradient: "" };

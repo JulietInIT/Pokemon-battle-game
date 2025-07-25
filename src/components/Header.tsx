@@ -31,7 +31,7 @@ export default function Header() {
 
         {/* Right nav */}
         <nav className='flex gap-6 text-[#112B54] font-bold text-base uppercase'>
-          <Link href='/myroster' className='underline hover:no-underline'>
+          <Link href='/roster' className='underline hover:no-underline'>
             My Roster
           </Link>
           <Link href='/signup' className='underline hover:no-underline'>

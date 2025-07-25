@@ -3,7 +3,7 @@
 export default function PokemonDetailsPage() {
   return (
     <>
-      <h1 className='text-2xl font-bold'>Pokémon Details Page</h1>
+      <h1 className='text-2xl text-black font-bold'>Pokémon Details Page</h1>
     </>
   );
 }
