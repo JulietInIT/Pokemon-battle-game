@@ -1,5 +1,4 @@
 // src/app/pokemon/[id]/page.tsx
-
 export default function PokemonDetailsPage() {
   return (
     <>
