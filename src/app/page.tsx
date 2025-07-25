@@ -2,12 +2,7 @@
 import PokemonList from "@/components/PokemonList";
 import Hero from "@/components/Hero";
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default async function HomePage() {
   return (
     <>
       <Hero />
