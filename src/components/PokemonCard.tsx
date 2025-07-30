@@ -6,8 +6,16 @@ Need to create a PokémonCard that only desplays the name and image of the Poké
 import Image from "next/image";
 import { PokemonListItemType, PokemonCardProps } from "../lib/types";
 import { getPokemonImageUrl, getPokemonColors } from "../lib/utils";
+import PokeballButton from "./ui/PokeBallButton";
 
-export default function PokemonCard({ pokemon, types = [] }: PokemonCardProps) {
+export default function PokemonCard({
+  pokemon,
+  types = [],
+  isCaught,
+  onCatch,
+  onRelease,
+  showActions,
+}: PokemonCardProps) {
   /* console.log("Pokemon URL:", pokemon.url); */
 
   const pokemonId = pokemon.url.split("/").filter(Boolean).slice(-1)[0];
@@ -24,6 +32,15 @@ export default function PokemonCard({ pokemon, types = [] }: PokemonCardProps) {
         ...(gradient ? { background: gradient } : { backgroundColor: "white" }),
       }}
     >
+      {showActions && (
+        <div className='absolute top-0 right-0 z-20'>
+          <PokeballButton
+            label={isCaught ? "Release" : "Catch"}
+            variant={isCaught ? "release" : "catch"}
+            onClick={isCaught ? onRelease : onCatch}
+          />
+        </div>
+      )}
       {/* White overlay to soften colors */}
       <div className='absolute inset-0 bg-white/40 rounded-2xl pointer-events-none' />
 

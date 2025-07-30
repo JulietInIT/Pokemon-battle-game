@@ -27,6 +27,10 @@ export type PokemonListItemType = {
 export type PokemonCardProps = {
   pokemon: PokemonListItemType;
   types?: { type: { name: PokemonType } }[];
+  isCaught?: boolean;
+  onCatch?: () => void;
+  onRelease?: () => void;
+  showActions?: boolean;
 };
 
 export type PokemonListProps = {

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
-import PokeballButton from "./ui/PokeBallButton";
 import { PokemonListItemType, PokemonListProps } from "@/lib/types";
 import { getPokemonListItems, fetchPokemonDetails } from "@/lib/utils";
 
@@ -81,19 +80,15 @@ export default function PokemonList({
         const isCaught = caughtPokemon.has(id);
 
         return (
-          <div key={`${poke.name}-${id}`} className='relative'>
-            <PokemonCard pokemon={poke} types={details?.types || []} />
-            {showActions && (
-              <div className='absolute top-4 right-4'>
-                <PokeballButton
-                  label={isCaught ? "Release" : "Catch"}
-                  variant={isCaught ? "release" : "catch"}
-                  onClick={() =>
-                    isCaught ? handleRelease(poke) : handleCatch(poke)
-                  }
-                />
-              </div>
-            )}
+          <div key={`${poke.name}-${id}`} className='flex justify-center'>
+            <PokemonCard
+              pokemon={poke}
+              types={details?.types || []}
+              isCaught={isCaught}
+              showActions={showActions}
+              onCatch={() => handleCatch(poke)}
+              onRelease={() => handleRelease(poke)}
+            />
           </div>
         );
       })}
